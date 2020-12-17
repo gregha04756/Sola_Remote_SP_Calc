@@ -30,5 +30,16 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+public:
+	CButton m_btn_Radio01;
+	CButton m_btn_Radio02;
+	// Enter 4mADC and 20mADC temperatures
+	CEdit m_Edit01;
+	CEdit m_Edit02;
+	// mADC input value
+	CEdit m_Edit03;
+	// Calculated setpoint temperature
+	CEdit m_Edit04;
+	afx_msg void OnBnClickedButton1();
 	DECLARE_MESSAGE_MAP()
 };

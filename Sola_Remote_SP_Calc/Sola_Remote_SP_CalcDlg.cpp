@@ -59,12 +59,32 @@ CSolaRemoteSPCalcDlg::CSolaRemoteSPCalcDlg(CWnd* pParent /*=nullptr*/)
 void CSolaRemoteSPCalcDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_RADIO1, m_btn_Radio01);
+	DDX_Control(pDX, IDC_RADIO2, m_btn_Radio02);
+	DDX_Control(pDX, IDC_EDIT1, m_Edit01);
+	CString ss;
+	m_Edit01.GetWindowTextW(ss);
+	double xx = _wtof(ss);
+	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	DDX_Control(pDX, IDC_EDIT2, m_Edit02);
+	m_Edit02.GetWindowTextW(ss);
+	xx = _wtof(ss);
+	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	DDX_Control(pDX, IDC_EDIT3, m_Edit03);
+	m_Edit03.GetWindowTextW(ss);
+	xx = _wtof(ss);
+	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	DDX_Control(pDX, IDC_EDIT4, m_Edit04);
+	m_Edit04.GetWindowTextW(ss);
+	xx = _wtof(ss);
+	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
 }
 
 BEGIN_MESSAGE_MAP(CSolaRemoteSPCalcDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CSolaRemoteSPCalcDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -100,7 +120,9 @@ BOOL CSolaRemoteSPCalcDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
+	m_btn_Radio01.SetCheck(TRUE);
+	m_Edit01.SetWindowTextW(_T("60.0"));
+	m_Edit02.SetWindowTextW(_T("190.0"));
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -153,3 +175,10 @@ HCURSOR CSolaRemoteSPCalcDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CSolaRemoteSPCalcDlg::OnBnClickedButton1()
+{
+	// TODO: Add your control notification handler code here
+	this->UpdateData(TRUE);
+}
