@@ -7,6 +7,7 @@
 #include "Sola_Remote_SP_Calc.h"
 #include "Sola_Remote_SP_CalcDlg.h"
 #include "afxdialogex.h"
+#include "NumericEdit.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,11 +74,7 @@ void CSolaRemoteSPCalcDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT3, m_Edit03);
 	m_Edit03.GetWindowTextW(ss);
 	xx = _wtof(ss);
-	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
-	DDX_Control(pDX, IDC_EDIT4, m_Edit04);
-	m_Edit04.GetWindowTextW(ss);
-	xx = _wtof(ss);
-	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	DDV_MinMaxDouble(pDX, xx, 4.0L, 20.0L);
 }
 
 BEGIN_MESSAGE_MAP(CSolaRemoteSPCalcDlg, CDialogEx)
@@ -123,6 +120,7 @@ BOOL CSolaRemoteSPCalcDlg::OnInitDialog()
 	m_btn_Radio01.SetCheck(TRUE);
 	m_Edit01.SetWindowTextW(_T("60.0"));
 	m_Edit02.SetWindowTextW(_T("190.0"));
+	m_Edit03.SetWindowTextW(_T("4.0"));
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -180,5 +178,16 @@ HCURSOR CSolaRemoteSPCalcDlg::OnQueryDragIcon()
 void CSolaRemoteSPCalcDlg::OnBnClickedButton1()
 {
 	// TODO: Add your control notification handler code here
-	this->UpdateData(TRUE);
+	BOOL b_r  = this->UpdateData(TRUE);
+	if (b_r)
+	{
+		CString ss;
+		m_Edit01.GetWindowTextW(ss);
+		double t_4 = _wtof(ss);
+		m_Edit02.GetWindowTextW(ss);
+		double t_20 = _wtof(ss);
+		m_Edit03.GetWindowTextW(ss);
+		double s_420 = _wtof(ss);
+
+	}
 }
