@@ -40,7 +40,7 @@ public:
 	// mADC input value
 	CNumericEdit m_Edit03;
 	// Calculated setpoint temperature
-	CNumericEdit m_Edit04;
+	CEdit m_Edit04;
 	afx_msg void OnBnClickedButton1();
 	DECLARE_MESSAGE_MAP()
 };

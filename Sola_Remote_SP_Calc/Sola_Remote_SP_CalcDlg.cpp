@@ -182,12 +182,16 @@ void CSolaRemoteSPCalcDlg::OnBnClickedButton1()
 	if (b_r)
 	{
 		CString ss;
+		TCHAR sz_sp[10];
 		m_Edit01.GetWindowTextW(ss);
 		double t_4 = _wtof(ss);
 		m_Edit02.GetWindowTextW(ss);
 		double t_20 = _wtof(ss);
 		m_Edit03.GetWindowTextW(ss);
 		double s_420 = _wtof(ss);
-
+		double t_sp = t_4 + ((t_20-t_4)*((s_420 - 4.0L) / 16.0L));
+		ss.Format(_T("%lf"), t_sp);
+		HRESULT hres_r = StringCchPrintf(sz_sp,sizeof(sz_sp)/sizeof(TCHAR),_T("%s"), ss);
+		m_Edit04.SetWindowText(sz_sp);
 	}
 }
