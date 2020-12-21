@@ -66,15 +66,36 @@ void CSolaRemoteSPCalcDlg::DoDataExchange(CDataExchange* pDX)
 	CString ss;
 	m_Edit01.GetWindowTextW(ss);
 	double xx = _wtof(ss);
-	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	if (m_btn_Radio01.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	}
+	if (m_btn_Radio02.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	}
 	DDX_Control(pDX, IDC_EDIT2, m_Edit02);
 	m_Edit02.GetWindowTextW(ss);
 	xx = _wtof(ss);
-	DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	if (m_btn_Radio01.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	}
+	if (m_btn_Radio02.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 60.0L, 190.0L);
+	}
 	DDX_Control(pDX, IDC_EDIT3, m_Edit03);
 	m_Edit03.GetWindowTextW(ss);
 	xx = _wtof(ss);
-	DDV_MinMaxDouble(pDX, xx, 4.0L, 20.0L);
+	if (m_btn_Radio01.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 4.0L, 20.0L);
+	}
+	if (m_btn_Radio02.GetCheck())
+	{
+		DDV_MinMaxDouble(pDX, xx, 0.0L, 10.0L);
+	}
 	DDX_Control(pDX, IDC_EDIT5, m_Edit05);
 }
 
@@ -83,6 +104,8 @@ BEGIN_MESSAGE_MAP(CSolaRemoteSPCalcDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CSolaRemoteSPCalcDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_RADIO1, &CSolaRemoteSPCalcDlg::OnBnClickedRadio1)
+	ON_BN_CLICKED(IDC_RADIO2, &CSolaRemoteSPCalcDlg::OnBnClickedRadio2)
 END_MESSAGE_MAP()
 
 
@@ -191,8 +214,32 @@ void CSolaRemoteSPCalcDlg::OnBnClickedButton1()
 		m_Edit03.GetWindowTextW(ss);
 		double s_420 = _wtof(ss);
 		double t_sp = t_4 + ((t_20-t_4)*((s_420 - 4.0L) / 16.0L));
+		if (m_btn_Radio02.GetCheck())
+		{
+			t_sp = t_4 + ((t_20 - t_4)*((s_420 - 0.0L) / 10.0L));
+		}
 		ss.Format(_T("%lf"), t_sp);
 		HRESULT hres_r = StringCchPrintf(sz_sp,sizeof(sz_sp)/sizeof(TCHAR),_T("%s"), ss);
 		m_Edit05.SetWindowText(sz_sp);
 	}
+}
+
+
+void CSolaRemoteSPCalcDlg::OnBnClickedRadio1()
+{
+	// TODO: Add your control notification handler code here
+	m_Edit01.SetWindowTextW(_T("60.0"));
+	m_Edit02.SetWindowTextW(_T("190.0"));
+	m_Edit03.SetWindowTextW(_T("4.0"));
+	m_Edit05.SetWindowTextW(_T(""));
+}
+
+
+void CSolaRemoteSPCalcDlg::OnBnClickedRadio2()
+{
+	// TODO: Add your control notification handler code here
+	m_Edit01.SetWindowTextW(_T("60.0"));
+	m_Edit02.SetWindowTextW(_T("190.0"));
+	m_Edit03.SetWindowTextW(_T("0.0"));
+	m_Edit05.SetWindowTextW(_T(""));
 }

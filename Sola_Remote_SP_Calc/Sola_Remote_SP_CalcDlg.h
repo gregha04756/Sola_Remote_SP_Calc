@@ -42,5 +42,7 @@ public:
 	// Calculated setpoint temperature
 	CEdit m_Edit05;
 	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedRadio1();
+	afx_msg void OnBnClickedRadio2();
 	DECLARE_MESSAGE_MAP()
 };
