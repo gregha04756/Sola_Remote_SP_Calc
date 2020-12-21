@@ -75,6 +75,7 @@ void CSolaRemoteSPCalcDlg::DoDataExchange(CDataExchange* pDX)
 	m_Edit03.GetWindowTextW(ss);
 	xx = _wtof(ss);
 	DDV_MinMaxDouble(pDX, xx, 4.0L, 20.0L);
+	DDX_Control(pDX, IDC_EDIT5, m_Edit05);
 }
 
 BEGIN_MESSAGE_MAP(CSolaRemoteSPCalcDlg, CDialogEx)
@@ -192,6 +193,6 @@ void CSolaRemoteSPCalcDlg::OnBnClickedButton1()
 		double t_sp = t_4 + ((t_20-t_4)*((s_420 - 4.0L) / 16.0L));
 		ss.Format(_T("%lf"), t_sp);
 		HRESULT hres_r = StringCchPrintf(sz_sp,sizeof(sz_sp)/sizeof(TCHAR),_T("%s"), ss);
-		m_Edit04.SetWindowText(sz_sp);
+		m_Edit05.SetWindowText(sz_sp);
 	}
 }
